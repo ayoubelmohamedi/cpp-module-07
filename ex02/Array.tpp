@@ -5,7 +5,7 @@
 
 
 template <typename T>
-Array<T>::Array(const Array<T> &copy) : _items(nullptr), _sz(copy._sz)
+Array<T>::Array(const Array<T> &copy) : _sz(copy._sz)
 {
     if (_sz > 0)
     {
@@ -27,7 +27,7 @@ Array<T> &Array<T>::operator=(const Array<T> &copy) {
                 _items[i] = copy._items[i];         
         }
         else
-            _items = nullptr;
+            _items = 0;
     }
     return *this;
 }
