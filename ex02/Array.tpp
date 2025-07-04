@@ -34,13 +34,13 @@ Array<T> &Array<T>::operator=(const Array<T> &copy) {
 
 template <typename T>
 T& Array<T>::operator[](size_t idx) {
-    if (idx >= _sz) throw std::out_of_range("Index out of range");
+    if (idx >= _sz)
+        throw std::out_of_range("Index out of range");
     return _items[idx];
 }
 
 template <typename T>
 Array<T>::~Array()
 {
-    if (_items)
-        delete [] _items;
+    delete [] _items;
 }

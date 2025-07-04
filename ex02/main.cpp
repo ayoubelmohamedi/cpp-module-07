@@ -1,43 +1,55 @@
-
-
-
-
-
-#include <string>
 #include <iostream>
 #include "Array.hpp"
+#include <cstdlib>
+#include <ctime>
 
-#include "Array.tpp"
+#define MAX_VAL 750
+int main(int, char**)
+{
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    // test leaks 
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-int main() {
-    Array<int> a(5);
-    for (size_t i = 0; i < a.size(); i++)
-        a[i] = static_cast<int>(i * 10);
-    
-    // can be access with brakets 
-    std::cout << a[4] << std::endl;
-    
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-    std::cout << "Array a: " << std::endl;
-    for (size_t i = 0; i < a.size(); i++)
-        std::cout << a[i] << std::endl;
-
-    std::cout << "========" << std::endl;
-    std::cout << "Array b (after copy and modify): " << std::endl;
-
-    Array<int> b = a; // Copy constructor
-    b[0] = 99;
-
-    for (size_t i = 0; i < b.size(); i++)
-        std::cout << b[i] << std::endl;
-    
-    std::cout << "========" << std::endl;
-
-
-    std::cout << "Array a (should be unchanged): " << std::endl;
-    for (size_t i = 0; i < a.size(); ++i)
-        std::cout << a[i] << " ";
-    std::cout << std::endl;
-
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;
     return 0;
 }

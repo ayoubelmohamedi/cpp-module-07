@@ -3,9 +3,9 @@
 
 
 #pragma once
+
 #include <stdexcept>
 #include <cstddef>
-
 
 template <typename T>
 class Array 
@@ -23,3 +23,6 @@ public:
     size_t size() const { return (_sz);}
 };
 
+
+
+#include "Array.tpp"
