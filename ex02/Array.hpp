@@ -19,7 +19,6 @@ public:
     Array(const Array &copy);
     ~Array();
     Array<T> &operator=(const Array &copy);
-    T Array<T>::get(size_t idx) const;
     T& operator[](size_t idx);
     size_t size() const { return (_sz);}
 };

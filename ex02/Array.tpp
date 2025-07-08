@@ -38,10 +38,6 @@ T& Array<T>::operator[](size_t idx) {
     return _items[idx];
 }
 
-template <typename T>
-T Array<T>::get(size_t idx) const{
-    return (*this)[idx];
-}
 
 template <typename T>
 Array<T>::~Array()

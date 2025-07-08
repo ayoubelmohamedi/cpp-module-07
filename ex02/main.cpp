@@ -9,7 +9,7 @@ void compare(Array<int>& numbers, Array<int>& mirror)
 {
     if (mirror.size() != numbers.size())
         return ;
-    for (int i = 0; i < mirror.size(); i++)
+    for (size_t i = 0; i < mirror.size(); i++)
     {
         if (mirror[i] != numbers[i])
         {
@@ -19,7 +19,6 @@ void compare(Array<int>& numbers, Array<int>& mirror)
     }
     return ;
 }
-
 
 int main(int, char**)
 {
@@ -36,8 +35,8 @@ int main(int, char**)
     }
 
     // compare values 
+    std::cout << "Compare two Arrays: " << std::endl;
     compare(numbers , testcopy);
-    
 
     // count nbr of values
     for (int i = 0; i < MAX_VAL; i++)
